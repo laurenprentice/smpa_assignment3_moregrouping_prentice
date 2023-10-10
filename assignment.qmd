@@ -108,6 +108,11 @@ In other words, you want to end up with the calculated mean for what that percen
 ```{r}
 
 
+impeach %>%
+  group_by(for_impeachment) %>%
+  summarise(mean_pct_bachelors = mean(pct_bachelors))
+
+
 
 
 
@@ -124,6 +129,10 @@ The relevant column for that is `trump_percent`.
 
 
 
+impeach %>%
+  group_by(for_impeachment) %>%
+  summarise(mean_trump_percent = mean(trump_percent, na.rm = TRUE))
+
 
 
 
@@ -138,6 +147,14 @@ The relevant column for that is `trump_percent`.
 ```{r}
 
   
+
+
+impeach %>%
+  filter(for_impeachment == "Yes") %>%
+  group_by(margin_flag_2018) %>%
+  summarise(count = n())
+
+
 
 
 
