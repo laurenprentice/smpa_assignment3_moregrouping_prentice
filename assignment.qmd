@@ -149,9 +149,15 @@ impeach %>%
   
 
 
+
 impeach %>%
-  filter(for_impeachment == "Yes") %>%
-  group_by(margin_flag_2018) %>%
+  filter(for_impeachment == "YES") %>%
+  group_by(margin_flag_2018 == "5_points_or_less") %>%
+  summarise(count = n())
+
+impeach %>%
+  filter(for_impeachment == "YES") %>%
+  group_by(margin_flag_2018 == "more_than_5_points") %>%
   summarise(count = n())
 
 
