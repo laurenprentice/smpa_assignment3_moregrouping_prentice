@@ -44,8 +44,10 @@ Write your code using grouping in the chunks below to help answer the following 
 
 ```{r}
 
-
-
+impeach %>%
+  group_by(for_impeachment) %>%
+  summarise(count = n())
+  
 
 
 
@@ -58,8 +60,10 @@ You'll want to ensure you do the grouping on both columns together, e.g. `group_
 ```{r}
 
 
-
-
+impeach %>%
+  filter(party == "D") %>% 
+  group_by(for_impeachment, median_income_compared_to_national) %>%
+  summarise(count = n())
 
 
 
@@ -72,6 +76,18 @@ You'll want to ensure you do the grouping on both columns together, e.g. `group_
 
 ```{r}
 
+
+
+
+
+impeach %>%
+  filter(party == "D") %>% 
+  mutate(
+    college_graduates = ifelse(pct_bachelors_compared_to_national > 1, "Above", "Below"),
+    median_age = ifelse(median_age_compared_to_national > 1, "Above", "Below")
+  ) %>% 
+  group_by(for_impeachment, college_graduates, median_age) %>%
+  summarise(count = n())
 
 
 
