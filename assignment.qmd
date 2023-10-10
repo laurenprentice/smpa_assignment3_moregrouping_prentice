@@ -155,10 +155,7 @@ impeach %>%
   group_by(margin_flag_2018 == "5_points_or_less") %>%
   summarise(count = n())
 
-impeach %>%
-  filter(for_impeachment == "YES") %>%
-  group_by(margin_flag_2018 == "more_than_5_points") %>%
-  summarise(count = n())
+
 
 
 
@@ -176,6 +173,11 @@ impeach %>%
 
   
 
+impeach %>%
+  filter(for_impeachment == "NO") %>%
+  group_by(margin_flag_2018 == "5_points_or_less") %>%
+  summarise(count = n())
+
 
 
 
@@ -190,7 +192,16 @@ Use the mutate() function to create two new columns: one that extracts the year 
 
 ```{r}
 
-  
+
+impeach <-
+  impeach %>%
+  mutate(year=substr(date_announced, 0,4), month = substr(date_announced, 6, 7))
+
+
+
+
+
+
 
 
 
@@ -204,7 +215,14 @@ Use the mutate() function to create two new columns: one that extracts the year 
 
 ```{r}
 
-  
+
+
+
+impeach %>%
+  group_by(month)
+
+
+
 
 
 
